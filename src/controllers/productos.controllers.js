@@ -46,7 +46,9 @@ export const obtenerProducto = async(req, res)=>{
         //pedirle a la BD que busque ese producto que tiene tal id
         const productoBuscado = await Producto.findById(req.params.id);
         //agregar una respuesta adicional cuando productoBuscado es null ---
-        
+        if(!productoBuscado){
+            return res.status(404).json({mensaje: 'El producto no fue encontrado'})
+        }
         //enviar en la respuesta el producto
         console.log(productoBuscado)
         res.status(200).json(productoBuscado)
