@@ -94,3 +94,4 @@ try {
     res.status(500).json({mensaje:'Ocurrio un error al intentar editar el producto'})
 }
 }
+
