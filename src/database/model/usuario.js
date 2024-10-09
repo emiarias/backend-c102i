@@ -22,7 +22,7 @@ const usuarioSchema = new Schema({
         trim:true,
         validate:{
             validator:(value)=>{
-                return /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/.test(value)
+                return /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,100}$/.test(value)
             }
         }
     }

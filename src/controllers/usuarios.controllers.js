@@ -1,16 +1,21 @@
 import Usuario from "../database/model/usuario.js";
-
+import bcrypt from 'bcrypt'
 
 export const crearUsuario = async (req, res) => {
     try {
-        const usuarioNuevo = new Usuario(req.body)
+        const {email, password} = req.body;
         //encriptar el password
-        
+        //crear los saltos
+        const saltos = bcrypt.genSaltSync(10);
+        const passwordHasheado = bcrypt.hashSync(password,saltos)
+        //creo el usuario en la BD
+        const usuarioNuevo = new Usuario({email, password: passwordHasheado})
         await usuarioNuevo.save()
         res.status(201).json({
             mensaje:"El usuario fue creado correctamente"
         })
     } catch (error) {
+        console.log(error)
         res.status(500).json({
             mensaje:"Ocurrio un error, no se pudo crear el usuario"
         })
