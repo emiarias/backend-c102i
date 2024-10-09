@@ -1,4 +1,5 @@
 import { check } from "express-validator";
+import resultadoValidacion from "./resultadoValidacion.js";
 
 const validacionProducto = [
   check("nombreProducto")
@@ -38,7 +39,7 @@ const validacionProducto = [
       "La categoria debe contener una de las siguientes opciones: Infusiones, Batidos, Dulce, Salado"
     ),
   // agregar validaciones de descripcion breve y amplia
-//   (req, res, next)=> validationResult
+   (req, res, next)=> resultadoValidacion(req, res, next)
 ];
 
 export default validacionProducto;
