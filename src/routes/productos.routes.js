@@ -8,6 +8,7 @@ import {
   obtenerProducto,
 } from "../controllers/productos.controllers.js";
 import validacionProducto from "../helpers/validacionProducto.js";
+import verificarJWT from "../helpers/verificarJWT.js";
 // app.get('/prueba', (req, res)=>{
 //     // console.log('desde la funcion de prueba')
 //     res.send('Desde el backend del proyecto crudCafe')
@@ -17,12 +18,12 @@ router.route("/prueba").get(leerPrueba);
 router
   .route("/productos")
   .post(
-    [validacionProducto],crearProducto
+    [verificarJWT, validacionProducto],crearProducto
   )
   .get(listarProductos);
 router
   .route("/productos/:id")
   .get(obtenerProducto)
-  .delete(borrarProducto)
-  .put([validacionProducto],editarProducto);
+  .delete([verificarJWT],borrarProducto)
+  .put([verificarJWT, validacionProducto],editarProducto);
 export default router;
